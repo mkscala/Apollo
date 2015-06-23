@@ -1,0 +1,27 @@
+---
+
+# Install (docker-py) python package as is a docker module dependency.
+- pip:
+    name: docker-py
+    version: 1.1.0
+  environment: proxy_env
+  tags:
+    - dockerbench
+
+# tasks file for docker bench
+- name: run dockerbench container
+  docker:
+    name: dockerbench
+    image: "{{ dockerbench_image }}"
+    state: started
+    restart_policy: always
+    net: host
+    pid: host
+    volumes:
+    - "/var/run/docker.sock:/tmp/docker.sock"
+    - "/usr/lib/systemd:/usr/lib/systemd"
+    - "/etc:/etc"
+  environment: proxy_env
+  when: dockerbench_run_test
+  tags:
+    - dockerbench

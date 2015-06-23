@@ -1,0 +1,5 @@
+---
+# defaults file for dockerbench
+dockerbench_run_test: false
+dockerbench_image: "diogomonica/docker-bench-security:latest"
+

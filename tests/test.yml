@@ -3,13 +3,16 @@
   gather_facts: no
   roles:
     - { role: ../roles/serverspec, test_role: "mesos_masters" }
+    - { role: ../roles/dockerbench, test_role: "mesos_masters" }
 
 - hosts: mesos_slaves
   gather_facts: no
   roles:
     - { role: ../roles/serverspec, test_role: "mesos_slaves" }
+    - { role: ../roles/dockerbench, test_role: "mesos_masters" }
 
 - hosts: load_balancers
   gather_facts: no
   roles:
     - { role: ../roles/serverspec, test_role: "load_balancers" }
+    - { role: ../roles/dockerbench, test_role: "mesos_masters" }
