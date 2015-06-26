@@ -5,6 +5,7 @@
     name: dockerbench
     image: "{{ dockerbench_image }}"
     state: started
+    command: "exit $?"
     restart_policy: always
     net: host
     pid: host
