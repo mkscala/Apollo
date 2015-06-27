@@ -20,7 +20,7 @@
   #   - dockerbench
 
   git: 
-    repo: git@github.com:docker/docker-bench-security.git 
+    repo: https://github.com/docker/docker-bench-security.git
     dest: /opt
     accept_hostkey: true
 
