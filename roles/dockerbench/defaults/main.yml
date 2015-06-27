@@ -1,5 +1,6 @@
 ---
 # defaults file for dockerbench
 dockerbench_run_test: false
-dockerbench_image: "diogomonica/docker-bench-security:latest"
+dockerbench_dest: /opt/dockerbench
+dockerbench_repo: https://github.com/docker/docker-bench-security.git
 

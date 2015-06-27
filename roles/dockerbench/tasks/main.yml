@@ -2,12 +2,12 @@
 # tasks file for docker bench
 - name: checkout docker bench git repo
   git: 
-    repo: https://github.com/docker/docker-bench-security.git
-    dest: /opt/dockerbench
+    repo: "{{ dockerbench_repo }}"
+    dest: "{{ dockerbench_dest }}"
     accept_hostkey: true
 
 - name: run docker bench script
   shell: set -x | sh docker-bench-security.sh | grep WARN
   sudo: yes
   args:
-    chdir: /opt/dockerbench
+    chdir: "{{ dockerbench_dest }}"
