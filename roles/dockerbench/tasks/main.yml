@@ -7,7 +7,7 @@
     accept_hostkey: true
 
 - name: run docker bench script
-  shell: set -x | sh docker-bench-security.sh
+  shell: set -x | sh docker-bench-security.sh | grep WARN
   sudo: yes
   args:
     chdir: /opt/dockerbench
