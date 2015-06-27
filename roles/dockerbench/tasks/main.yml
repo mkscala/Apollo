@@ -1,31 +1,13 @@
 ---
 # tasks file for docker bench
-- name: run dockerbench container
-  # docker:
-  #   name: dockerbench
-  #   image: "{{ dockerbench_image }}"
-  #   state: started
-  #   command: "--cap-add audit_control --label docker-bench-security"
-  #   restart_policy: always
-  #   net: host
-  #   pid: host
-  #   volumes:
-  #   - "/var/lib:/var/lib"
-  #   - "/var/run/docker.sock:/tmp/docker.sock"
-  #   - "/usr/lib/systemd:/usr/lib/systemd"
-  #   - "/etc:/etc"
-  # environment: proxy_env
-  # when: dockerbench_run_test
-  # tags:
-  #   - dockerbench
-
+- name: checkout docker bench git repo
   git: 
     repo: https://github.com/docker/docker-bench-security.git
-    dest: /opt
+    dest: /opt/dockerbench
     accept_hostkey: true
 
 - name: run docker bench script
-  shell: sh docker-bench-security.sh | grep -v WARN
+  shell: set -x | sh docker-bench-security.sh
+  sudo: yes
   args:
-    chdir: /opt/docker-bench-security/
-
+    chdir: /opt/dockerbench
