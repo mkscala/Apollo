@@ -1,13 +1,13 @@
 /* Base packer build we use for provisioning slave instances */
-resource "atlas_artifact" "mesos-slave" {
-  name = "${var.atlas_artifact.slave}"
-  type = "aws.ami"
-}
+// resource "atlas_artifact" "mesos-slave" {
+//   name = "${var.atlas_artifact.slave}"
+//   type = "aws.ami"
+// }
 
 /* Mesos slave instances */
 resource "aws_instance" "mesos-slave" {
   instance_type     = "${var.instance_type.slave}"
-  ami               = "${replace(atlas_artifact.mesos-master.id, concat(var.region, ":"), "")}"
+  ami               = "ami-fc34708b"
   count             = "${var.slaves}"
   key_name          = "${aws_key_pair.deployer.key_name}"
   subnet_id         = "${aws_subnet.public.id}"
